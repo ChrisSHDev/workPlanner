@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions'
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
 	textField: {
@@ -20,7 +21,7 @@ const styles = {
 }
 
 class Login extends Component {
-	constructor (props) {
+	constructor(props) {
 		super(props)
 		this.state = {
 			email: '',
@@ -30,8 +31,8 @@ class Login extends Component {
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
-	componentDidMount () {
-		if(this.props.auth.isAuthenticated) {
+	componentDidMount() {
+		if (this.props.auth.isAuthenticated) {
 			this.props.history.push('/')
 		}
 	}
@@ -44,10 +45,10 @@ class Login extends Component {
 			this.props.history.push('/')
 		}
 	}
-	handleChange (e) {
+	handleChange(e) {
 		this.setState({ [e.target.name]: e.target.value })
 	}
-	handleSubmit (e) {
+	handleSubmit(e) {
 		e.preventDefault()
 		const userData = {
 			email: this.state.email,
@@ -56,39 +57,43 @@ class Login extends Component {
 
 		this.props.loginUser(userData)
 	}
-	render () {
+	render() {
 		const { classes } = this.props;
 		const { errors } = this.state
 		return (
-			<Paper style={{ padding: 15}}>
-				<form onSubmit={this.handleSubmit}>
-					<TextField
-						type="email"
-						label="Email"
-						className={classes.textField}
-						value={this.state.email}
-						onChange={this.handleChange}
-						name="email"
-						helperText={errors.email ? errors.email : ''}
-						error={errors.email ? true : false } 
-					/>
-					<TextField
-						label="Password"
-						type="password"
-						name="password"
-						value={this.state.password}
-						onChange={this.handleChange}
-						className={classes.textField}
-						helperText={errors.password ? errors.password : ''}
-						error={errors.password ? true : false }  
-					/>
-					<div className={classes.btnBlock}>
-						<Button variant="outlined" type="submit">
-							Submit
+			<Grid className={classes.container} container justify="center">
+			<Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+				<Paper style={{ padding: 15 }}>
+					<form onSubmit={this.handleSubmit}>
+						<TextField
+							type="email"
+							label="Email"
+							className={classes.textField}
+							value={this.state.email}
+							onChange={this.handleChange}
+							name="email"
+							helperText={errors.email ? errors.email : ''}
+							error={errors.email ? true : false}
+						/>
+						<TextField
+							label="Password"
+							type="password"
+							name="password"
+							value={this.state.password}
+							onChange={this.handleChange}
+							className={classes.textField}
+							helperText={errors.password ? errors.password : ''}
+							error={errors.password ? true : false}
+						/>
+						<div className={classes.btnBlock}>
+							<Button variant="outlined" type="submit">
+								Submit
 						</Button>
-					</div>
-				</form>
-			</Paper>
+						</div>
+					</form>
+				</Paper>
+			</Grid>
+			</Grid>
 		)
 	}
 }

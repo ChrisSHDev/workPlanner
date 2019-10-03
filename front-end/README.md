@@ -1,3 +1,3 @@
-This is a simple SNS Web Application like Twitter.
+This is a planner to make daily work productive
 
 ReactJS

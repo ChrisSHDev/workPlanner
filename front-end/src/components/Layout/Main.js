@@ -14,6 +14,9 @@ const styles = {
         backgroundSize: '100%',
         backgroundPosition: 'center center',
         minHeight: '100vh'
+    },
+    container: {
+
     }
 }
 
@@ -26,27 +29,44 @@ class Main extends Component {
 
 
     render() {
-        const { classes } =this.props;
-        const divStyle = {
-            backgroundImage: `url(${this.props.bgsource})`
-        }
+        const { isAuthenticated } = this.props;
+        console.log(isAuthenticated);
+        const { classes } = this.props;
+        let divStyle;
+
+        divStyle = {
+            backgroundImage: `url(${isAuthenticated ? this.props.bgsource : 'none'})`
+        };
+        if(isAuthenticated){
         return (
-            <div style={divStyle} className = { classes.mains }>
+            
+            <div style={divStyle} className={classes.mains}> 
                 <Header />
-                <Grid container justify="center">
+                <Grid className={classes.container} container justify="center">
                     <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
                         {this.props.children}
                     </Grid>
                 </Grid>
             </div>
         )
+        }else {
+            return(
+                <div style={divStyle} className={classes.mains}> 
+                <Header />
+                <Grid>
+                        {this.props.children}
+                </Grid>
+                </div>
+            )
+        }
     }
 }
 
 const mapStateToProps = (state) => (
     {
-        bgsource: state.apibg.bgsource
+        bgsource: state.apibg.bgsource,
+        isAuthenticated: !!state.auth.isAuthenticated
     }
 )
 
-export default connect(mapStateToProps, {getbackgroundImage})(withStyles(styles)(Main));
+export default connect(mapStateToProps, { getbackgroundImage })(withStyles(styles)(Main));

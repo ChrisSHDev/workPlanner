@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ListPost from './Posts/ListPost';
 import Login from './Auth/Login';
+import IntroPage from './introPage';
 
 
 class Home extends Component{
@@ -10,9 +11,10 @@ class Home extends Component{
     render() {
         const { isAuthenticated } = this.props;
         console.log(isAuthenticated);
+
         return(
             <div>
-             { isAuthenticated ? <ListPost /> : <Login /> }
+             { isAuthenticated ? <ListPost /> : <IntroPage /> }
             </div>
         )
     }

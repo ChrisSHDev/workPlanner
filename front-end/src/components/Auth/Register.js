@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 
 import { registerUser } from '../../actions/authActions';
 
@@ -13,7 +14,7 @@ const styles = {
         width: '100%',
         marginBottom: 5
     },
-    btnBlock : {
+    btnBlock: {
         textAlign: 'center',
         marginBottom: 10,
         marginTop: 20
@@ -30,17 +31,17 @@ class Register extends Component {
         errors: {}
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         console.log(nextProps.errors);
-        if(nextProps.errors){
-            this.setState({ errors: nextProps.errors});
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
         }
         console.log(this.state.errors);
     }
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name ]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -59,57 +60,61 @@ class Register extends Component {
     render() {
         const { classes } = this.props;
         const { errors } = this.state;
-    
-        return(
-            <Paper style={{padding: 15}}>
-              <form onSubmit={this.handleSubmit}>
-                    <TextField
-                        type="email"
-                        label="Email"
-                        className={classes.textField}
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        name="email"
-                        helperText={errors.email ? errors.email : ''}
-                        error={errors.email ? true : false}
-                    />
-                    <TextField
-                        label="login"
-                        type="text"
-                        name="login"
-                        value={this.state.login}
-                        onChange={this.handleChange}
-                        className={classes.textField}
-                        helperText={errors.login ? errors.login : ''}
-                        error={errors.login ? true : false}
-                        />
-                    <TextField
-                        label="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        className={classes.textField}
-                        helperText={errors.password ? errors.password : ''}
-                        error={errors.password ? true : false}
-                        />
-                    <TextField
-                        label="Repeat password"
-                        type="password"
-                        name="password2"
-                        value={this.state.password2}
-                        onChange={this.handleChange}
-                        className={classes.textField}
-                        helperText={errors.password2 ? errors.password2 : ''}
-                        error={errors.password2 ? true : false}
-                        />
-                    <div className={classes.btnBlock}>
-                        <Button variant="outlined" type="submit">
-                            Submit
+
+        return (
+            <Grid className={classes.container} container justify="center">
+                <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+                    <Paper style={{ padding: 15 }}>
+                        <form onSubmit={this.handleSubmit}>
+                            <TextField
+                                type="email"
+                                label="Email"
+                                className={classes.textField}
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                                name="email"
+                                helperText={errors.email ? errors.email : ''}
+                                error={errors.email ? true : false}
+                            />
+                            <TextField
+                                label="login"
+                                type="text"
+                                name="login"
+                                value={this.state.login}
+                                onChange={this.handleChange}
+                                className={classes.textField}
+                                helperText={errors.login ? errors.login : ''}
+                                error={errors.login ? true : false}
+                            />
+                            <TextField
+                                label="password"
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                className={classes.textField}
+                                helperText={errors.password ? errors.password : ''}
+                                error={errors.password ? true : false}
+                            />
+                            <TextField
+                                label="Repeat password"
+                                type="password"
+                                name="password2"
+                                value={this.state.password2}
+                                onChange={this.handleChange}
+                                className={classes.textField}
+                                helperText={errors.password2 ? errors.password2 : ''}
+                                error={errors.password2 ? true : false}
+                            />
+                            <div className={classes.btnBlock}>
+                                <Button variant="outlined" type="submit">
+                                    Submit
                         </Button>
-                    </div>
-                </form>
-            </Paper>
+                            </div>
+                        </form>
+                    </Paper>
+                </Grid>
+            </Grid>
         )
     };
 }
