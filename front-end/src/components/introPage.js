@@ -34,7 +34,8 @@ const styles = {
         margin: '0 auto'
     },
     contentsHero: {
-        backgroundColor: 'rgb(132, 178, 76)'
+        backgroundColor: 'rgb(132, 178, 76)',
+        paddingTop: 100
     },
     contentsExplanation: {
         paddingTop: 50,
@@ -56,7 +57,8 @@ const styles = {
             fontSize: '2rem',
             color: '#172B4D',
             margin: 0
-        }
+        },
+        paddingBottom: 80
     },
     columnRight: {
         width: '75%',

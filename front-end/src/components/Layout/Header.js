@@ -111,7 +111,7 @@ class Header extends Component {
         )
         return (
             <div className={classes.root}>
-                <AppBar position="static" style={{ backgroundColor: '#84b24c' }}>
+                <AppBar style={{ backgroundColor: '#84b24c', boxShadow: 'unset' }}>
                     <Toolbar className={classes.space}>
                         <Link to="/" className={classes.logo}>WorkPlanner</Link>
                         {isAuthenticated ? authLinks : guestLinks}

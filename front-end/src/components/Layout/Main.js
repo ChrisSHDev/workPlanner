@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header';
+import Footer from './Footer';
 
 
 import { connect } from 'react-redux';
@@ -47,6 +48,7 @@ class Main extends Component {
                         {this.props.children}
                     </Grid>
                 </Grid>
+                <Footer />
             </div>
         )
         }else {
@@ -56,7 +58,9 @@ class Main extends Component {
                 <Grid>
                         {this.props.children}
                 </Grid>
+                <Footer />
                 </div>
+                
             )
         }
     }
