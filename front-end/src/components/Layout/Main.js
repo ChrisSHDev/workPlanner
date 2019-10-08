@@ -44,7 +44,7 @@ class Main extends Component {
             <div style={divStyle} className={classes.mains}> 
                 <Header />
                 <Grid className={classes.container} container justify="center">
-                    <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+                    <Grid item xs={12} sm={8}>
                         {this.props.children}
                     </Grid>
                 </Grid>

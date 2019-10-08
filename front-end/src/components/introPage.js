@@ -93,7 +93,7 @@ const introPage = ({ classes }) => {
                         <div className={classes.column}>
                             <h2>
                                 What is important is seldom urgent and what is urgent is seldom important.
-                        </h2>
+                            </h2>
                         </div>
                         <div className={classes.imgWrapper}>
                             <img src="images/mainHero.png" />

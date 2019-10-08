@@ -17,6 +17,19 @@ const styles = {
 		textAlign: 'center',
 		marginBottom: 10,
 		marginTop: 20
+	},
+	container: {
+		minHeight: 'calc(100vh - 56px)',
+		'& h1': {
+			fontSize: 38,
+			color: '#333',
+			lineHeight: '48px'
+		}
+	},
+	submitBtn: {
+		width: '100%',
+		backgroundColor: 'rgb(132, 178, 76)',
+		border: 'none'
 	}
 }
 
@@ -62,8 +75,9 @@ class Login extends Component {
 		const { errors } = this.state
 		return (
 			<Grid className={classes.container} container justify="center">
-			<Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+			<Grid item xs={12} sm={4} style={{ marginTop: 100}}>
 				<Paper style={{ padding: 15 }}>
+					<h1>Log in to WorkPlanner </h1>
 					<form onSubmit={this.handleSubmit}>
 						<TextField
 							type="email"
@@ -86,9 +100,9 @@ class Login extends Component {
 							error={errors.password ? true : false}
 						/>
 						<div className={classes.btnBlock}>
-							<Button variant="outlined" type="submit">
+							<Button className = {classes.submitBtn } variant="outlined" type="submit">
 								Submit
-						</Button>
+							</Button>
 						</div>
 					</form>
 				</Paper>

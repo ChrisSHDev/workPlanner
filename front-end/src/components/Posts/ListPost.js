@@ -6,14 +6,21 @@ import { getPosts, getPostsByFollowingUsers } from '../../actions/postActions';
 import LoadingPosts from './LoadingPost';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper'
+import Paper from '@material-ui/core/Paper';
+import CardsPost from './CardsPost';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+    cardsRow: {
+        display: 'flex'
+    }
+}
 
-class ListPost extends Component{
+class ListPost extends Component {
     state = {
         allPosts: false
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.getPosts()
     }
 
@@ -22,31 +29,29 @@ class ListPost extends Component{
             allPosts: event.target.checked
         })
     }
-    
+
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.allPosts !== this.state.allPosts) {
-            this.state.allPosts ?  this.props.getPostsByFollowingUsers() : this.props.getPosts()
+        if (prevState.allPosts !== this.state.allPosts) {
+            this.state.allPosts ? this.props.getPostsByFollowingUsers() : this.props.getPosts()
         }
     }
 
     render() {
+        const { classes } = this.props;
         const { list, loading } = this.props;
         const { allPosts } = this.state;
         console.log(list);
         const items = list && list.map(el => <Post key={el._id} post={el} />)
-        return(
-            <div>
-                <AddPost />
-                <Paper>
-                <FormControlLabel 
-                control={
-                    <Switch checked={allPosts} onChange={this.handleChange} />
-                }
-                label={allPosts ? 'All Posts' : 'From following users '}
-                />
-                                </Paper>
-                { loading ? <LoadingPosts /> :  items}
-
+        return (
+            <div style={{ minHeight: 'calc(100vh - 200px)', marginTop: '94px', marginBottom: '30px' }}>
+                <div className= { classes.cardsRow } >
+                    <CardsPost bgColor= "#f4b9bc" />
+                    <CardsPost bgColor= "#c8e6ca"/>
+                </div>
+                <div className= { classes.cardsRow }>
+                    <CardsPost bgColor= "#fee9b4"/>
+                    <CardsPost bgColor= "#bbdef6"/>
+                </div>
             </div>
         )
     }
@@ -54,8 +59,8 @@ class ListPost extends Component{
 
 const mapStateToProps = (state) => (
     {
-    list: state.post.list,
-    loading: state.post.loading
-})
+        list: state.post.list,
+        loading: state.post.loading
+    })
 
-export default connect(mapStateToProps, {getPosts, getPostsByFollowingUsers} )(ListPost);
+export default connect(mapStateToProps, { getPosts, getPostsByFollowingUsers })(withStyles(styles)(ListPost));
