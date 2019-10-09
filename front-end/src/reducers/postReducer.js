@@ -30,14 +30,12 @@ export default function ( state = initialState, action) {
                 loading: false,
                 list: action.payload
             }
-            /*
         case DELETE_POSTS :
             console.log(state.list);
             return {
                 ...state,
                 list : [...state.list]
             }         
-            */
         default:
             return state
     }

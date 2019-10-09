@@ -12,8 +12,9 @@ const styles = {
     paper: {
         padding: 10,
         display: 'flex',
-        marginTop: 10,
-        justyfyContent: 'center'
+        margin: '1.5%',
+        justifyContent: 'center',
+        width: '42.5%'
     },
     avatar: {
         minWidth: 10,
@@ -21,10 +22,10 @@ const styles = {
 
     },
     login: {
-        marginBottom: 5
+        marginBottom: 5,
+        marginTop: 5
     },
     time: {
-        marginLeft: 10,
         color: '#bbb',
         fontSize: 14
     },
@@ -79,19 +80,11 @@ class Post extends Component {
 
         return (
             <Paper className={classes.paper}>
-                <div
-                    className={classes.avatar}
-                    style={{
-                        backgroundColor: `#${post.user.id.slice(post.user.id.length - 3)}`
-                    }}
-                ></div>
                 <div className={classes.contentsBlock}>
-                    <h3 className={classes.login}>
-                        <Link to={`/profile/${post.user.id}`} > {post.user.login} </Link>
-                        <span className={classes.time}>{(new Date(post.createdAt)).toLocaleString()}</span></h3>
+                    <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span><br/>
                     {post.text}
+                    {post.title}
                 </div>
-                    {deleteBtn}
             </Paper>
         )
     }

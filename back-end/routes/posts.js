@@ -8,13 +8,17 @@ router.route('/add')
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const text = req.body.text.trim()
+        const title = req.body.title.trim();
+        const cardType = req.body.cardType.trim();
 
         const newPost = new Post({
             user: {
                 id: req.user.id,
                 login: req.user.login
             },
-            text
+            text,
+            title,
+            cardType
         })
 
         newPost.save()
