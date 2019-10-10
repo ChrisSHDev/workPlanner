@@ -45,12 +45,12 @@ class ListPost extends Component {
         return (
             <div style={{ minHeight: 'calc(100vh - 200px)', marginTop: '94px', marginBottom: '30px' }}>
                 <div className= { classes.cardsRow } >
-                    <CardsPost bgColor= "#f4b9bc" />
-                    <CardsPost bgColor= "#c8e6ca"/>
+                    <CardsPost bgColor= "#f4b9bc" cardType="do" />
+                    <CardsPost bgColor= "#c8e6ca" cardType="decide"/>
                 </div>
                 <div className= { classes.cardsRow }>
-                    <CardsPost bgColor= "#fee9b4"/>
-                    <CardsPost bgColor= "#bbdef6"/>
+                    <CardsPost bgColor= "#fee9b4" cardType="delegate"/>
+                    <CardsPost bgColor= "#bbdef6" cardType="eliminate"/>
                 </div>
             </div>
         )

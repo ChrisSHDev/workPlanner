@@ -17,22 +17,32 @@ const styles = {
         flexWrap:'wrap',
         justifyContent:'baseline',
         overflow: 'auto',
-        padding: 10
+        padding: 10,
+        alignItems: 'flex-start'
     }
 }
 
 class CardsPost extends Component {
 
     componentDidMount() {
-        this.props.getPosts()
+        this.props.getPosts();
+
     }
 
     render() {
-        console.log(this.props.bgColor);
+    
     const { classes } = this.props;
-    const { list} = this.props;
+    const { list } = this.props;
     console.log(list);
-    const items = list && list.map(el => <Post key={el._id} post={el} />)
+
+    let listType;
+
+    if(list != null){
+        listType = list.filter(li => li.cardType === this.props.cardType);
+        console.log(listType);
+    }
+
+    const items = listType && listType.map(el => <Post key={el._id} post={el} />)
         return (
             <div className = { classes.cardWapper }>
                 <Paper className = { classes.cards } style={{ backgroundColor: this.props.bgColor }}>

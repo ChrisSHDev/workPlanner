@@ -13,8 +13,8 @@ const styles = {
         padding: 10,
         display: 'flex',
         margin: '1.5%',
-        justifyContent: 'center',
-        width: '42.5%'
+        width: '42.5%',
+        minHeight: 20
     },
     avatar: {
         minWidth: 10,
@@ -33,7 +33,7 @@ const styles = {
 
     },
     contentsBlock:{
-        width: '80%'
+        width: '100%'
     },
     btnBlock : {
         display: 'flex',
@@ -82,7 +82,6 @@ class Post extends Component {
             <Paper className={classes.paper}>
                 <div className={classes.contentsBlock}>
                     <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span><br/>
-                    {post.text}
                     {post.title}
                 </div>
             </Paper>
