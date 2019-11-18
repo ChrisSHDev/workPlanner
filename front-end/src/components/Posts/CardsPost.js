@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { getPosts, getPostsByFollowingUsers } from '../../actions/postActions';
 import Post from './Post';
+import AddIcon from '@material-ui/icons/Add';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
     cardWapper: {
@@ -14,11 +16,25 @@ const styles = {
         height: 'calc((100vh - 240px)/2)',
         width: 'calc(100% - 20px)',
         display: 'flex',
-        flexWrap:'wrap',
-        justifyContent:'baseline',
+        flexDirection:'column',
         overflow: 'auto',
         padding: 10,
-        alignItems: 'flex-start'
+    },
+    cardHeader: {
+        width:'100%',
+        display:'flex',
+        justifyContent: 'space-between'
+    },
+    cardContent:{
+        width:'100%',
+        display:'flex'
+    },
+    cardPlus:{
+        width:62
+    },
+    cardHeaderLine: {
+        textTransform: 'uppercase',
+        marginLeft: 10
     }
 }
 
@@ -43,10 +59,17 @@ class CardsPost extends Component {
     }
 
     const items = listType && listType.map(el => <Post key={el._id} post={el} />)
+
         return (
             <div className = { classes.cardWapper }>
                 <Paper className = { classes.cards } style={{ backgroundColor: this.props.bgColor }}>
+                <div className= {classes.cardHeader}><h3 className={classes.cardHeaderLine}>{this.props.cardType}</h3>
+                <IconButton className={classes.cardPlus} color="inherit">
+                <AddIcon />
+                </IconButton></div>
+                <div className={classes.cardContent}>
                     {items}
+                </div>
                 </Paper>
             </div>
         );
