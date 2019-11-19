@@ -33,19 +33,30 @@ class AddPost extends Component {
         text: ''
     }
 
-    handleChange = (e) => {
-        this.setState({ text : e.target.value });
+    handleChangeText = (e) => {
+        this.setState({ 
+            text : e.target.value
+        });
+    }
+
+    handleChangeTitle = (e) => {
+        this.setState({ 
+            title : e.target.value
+        });
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
 
         const postData = {
-            text: this.state.text
+            text: this.state.text,
+            cardType: this.props.cardType,
+            title: this.state.title
         }
 
         this.props.addPost(postData);
         this.setState({ text: ''});
+        console.log(postData);
     }
     render() {
         const { classes } = this.props;
@@ -54,9 +65,17 @@ class AddPost extends Component {
                 <TextField 
                     multiline
                     rowMax="4"
+                    label="Please enter your title."
+                    className={ classes.textField }
+                    onChange={ this.handleChangeTitle }
+                    value={ this.state.title }
+                />
+                <TextField 
+                    multiline
+                    rowMax="4"
                     label="Please enter your message."
                     className={ classes.textField }
-                    onChange={ this.handleChange }
+                    onChange={ this.handleChangeText }
                     value={ this.state.text }
                 />
                 <Button 

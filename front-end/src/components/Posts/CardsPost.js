@@ -6,6 +6,7 @@ import { getPosts, getPostsByFollowingUsers } from '../../actions/postActions';
 import Post from './Post';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
+import Modals from '../Posts/Modals';
 
 const styles = {
     cardWapper: {
@@ -16,21 +17,21 @@ const styles = {
         height: 'calc((100vh - 240px)/2)',
         width: 'calc(100% - 20px)',
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         overflow: 'auto',
         padding: 10,
     },
     cardHeader: {
-        width:'100%',
-        display:'flex',
+        width: '100%',
+        display: 'flex',
         justifyContent: 'space-between'
     },
-    cardContent:{
-        width:'100%',
-        display:'flex'
+    cardContent: {
+        width: '100%',
+        display: 'flex'
     },
-    cardPlus:{
-        width:62
+    cardPlus: {
+        width: 62
     },
     cardHeaderLine: {
         textTransform: 'uppercase',
@@ -42,34 +43,38 @@ class CardsPost extends Component {
 
     componentDidMount() {
         this.props.getPosts();
-
     }
+
 
     render() {
-    
-    const { classes } = this.props;
-    const { list } = this.props;
-    console.log(list);
 
-    let listType;
 
-    if(list != null){
-        listType = list.filter(li => li.cardType === this.props.cardType);
-        console.log(listType);
-    }
 
-    const items = listType && listType.map(el => <Post key={el._id} post={el} />)
+        const { classes } = this.props;
+        const { list } = this.props;
+        console.log(list);
+        console.log(this.props.cardType);
+        let listType;
+
+        if (list != null) {
+            listType = list.filter(li => li.cardType === this.props.cardType);
+            console.log(listType);
+        }
+
+        const items = listType && listType.map(el => <Post key={el._id} post={el} />)
 
         return (
-            <div className = { classes.cardWapper }>
-                <Paper className = { classes.cards } style={{ backgroundColor: this.props.bgColor }}>
-                <div className= {classes.cardHeader}><h3 className={classes.cardHeaderLine}>{this.props.cardType}</h3>
-                <IconButton className={classes.cardPlus} color="inherit">
-                <AddIcon />
-                </IconButton></div>
-                <div className={classes.cardContent}>
-                    {items}
-                </div>
+            <div className={classes.cardWapper}>
+                <Paper className={classes.cards} style={{ backgroundColor: this.props.bgColor }}>
+                    <div className={classes.cardHeader}><h3 className={classes.cardHeaderLine}>{this.props.cardType}</h3>
+                        <IconButton className={classes.cardPlus} color="inherit">
+                            <Modals cardType={this.props.cardType} />
+                        </IconButton></div>
+
+
+                    <div className={classes.cardContent}>
+                        {items}
+                    </div>
                 </Paper>
             </div>
         );
