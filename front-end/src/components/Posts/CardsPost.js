@@ -7,6 +7,7 @@ import Post from './Post';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import Modals from '../Posts/Modals';
+import DetailModal from '../Posts/DetailModal';
 
 const styles = {
     cardWapper: {
@@ -70,12 +71,12 @@ class CardsPost extends Component {
                         <IconButton className={classes.cardPlus} color="inherit">
                             <Modals cardType={this.props.cardType} />
                         </IconButton></div>
-
-
                     <div className={classes.cardContent}>
                         {items}
                     </div>
+                    <DetailModal />
                 </Paper>
+
             </div>
         );
     }

@@ -6,7 +6,14 @@ import Button from '@material-ui/core/Button';
 import { getUserProfile } from '../../actions/profileActions';
 import { deletePost, getPosts } from '../../actions/postActions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import AddIcon from '@material-ui/icons/Add';
+import AddPost from '../Posts/AddPost';
 
 const styles = {
     paper: {
@@ -29,17 +36,24 @@ const styles = {
         color: '#bbb',
         fontSize: 14
     },
-    btnDelete : {
+    btnDelete: {
 
     },
-    contentsBlock:{
+    contentsBlock: {
         width: '100%'
     },
-    btnBlock : {
+    btnBlock: {
         display: 'flex',
         alignItems: 'center'
+    },
+    postHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        '& button': {
+            padding: 0
+        }
     }
-
 }
 
 
@@ -51,7 +65,7 @@ class Post extends Component {
         console.log(this.props.post._id);
         this.props.deletePost(this.props.post._id);
         this.props.getPosts();
-        if(this.props.getPosts() === undefined){
+        if (this.props.getPosts() === undefined) {
             this.props.getPosts();
             history.push('/');
         } else {
@@ -66,13 +80,9 @@ class Post extends Component {
 
         if (post.user.login === user.login) {
             deleteBtn = (
-                <div className={classes.btnBlock}>
-                    <Button variant="outlined" className={classes.btnDelete} onClick={this.handleRemove} style={{
-                        backgroundColor: `#${post.user.id.slice(post.user.id.length - 3)}`, color : 'white'
-                    }}>
-                        Delete
-                    </Button>
-                </div>
+                <IconButton className={classes.button} aria-label="delete" onClick={this.handleRemove} >
+                    <DeleteIcon />
+                </IconButton>
             );
         } else {
             deleteBtn = (<div></div>);
@@ -81,10 +91,13 @@ class Post extends Component {
         return (
             <Paper className={classes.paper}>
                 <div className={classes.contentsBlock}>
-                    <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span><br/>
+                    <div className={classes.postHeader}>
+                        <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span>{deleteBtn}
+                    </div>
                     {post.title}
                 </div>
             </Paper>
+
         )
     }
 }
