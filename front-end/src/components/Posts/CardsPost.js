@@ -42,14 +42,14 @@ const styles = {
 
 class CardsPost extends Component {
 
+
     componentDidMount() {
         this.props.getPosts();
     }
 
 
+
     render() {
-
-
 
         const { classes } = this.props;
         const { list } = this.props;
@@ -74,7 +74,7 @@ class CardsPost extends Component {
                     <div className={classes.cardContent}>
                         {items}
                     </div>
-                    <DetailModal />
+
                 </Paper>
 
             </div>

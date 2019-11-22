@@ -14,6 +14,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import AddIcon from '@material-ui/icons/Add';
 import AddPost from '../Posts/AddPost';
+import DetailModal from '../Posts/DetailModal';
 
 const styles = {
     paper: {
@@ -40,7 +41,8 @@ const styles = {
 
     },
     contentsBlock: {
-        width: '100%'
+        width: '100%',
+        position: 'relative'
     },
     btnBlock: {
         display: 'flex',
@@ -95,6 +97,7 @@ class Post extends Component {
                         <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span>{deleteBtn}
                     </div>
                     {post.title}
+                    <DetailModal />
                 </div>
             </Paper>
 

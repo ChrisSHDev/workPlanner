@@ -19,23 +19,35 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  modalBox: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '91%',
+    height: '100% !important',
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  }
 }));
 
 export default function TransitionsModal() {
-    console.log("working modal")
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
+
+  const handleOpen = () =>{
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
-    <div>
-      <Button onClick={handleOpen}/>
+    <div >
+      <div className={classes.modalBox} onClick={handleOpen}></div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
