@@ -97,7 +97,7 @@ class Post extends Component {
                         <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span>{deleteBtn}
                     </div>
                     {post.title}
-                    <DetailModal />
+                    <DetailModal post={this.props.post}/>
                 </div>
             </Paper>
 

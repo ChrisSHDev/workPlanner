@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import AddIcon from '@material-ui/icons/Add';
-import AddPost from './AddPost';
-import { Button } from '@material-ui/core';
+import PostDetails from '../Posts/PostDetails'
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -31,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TransitionsModal() {
+export default function TransitionsModal(props) {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -62,7 +60,7 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            Details
+            <PostDetails post={props.post}/>
           </div>
         </Fade>
       </Modal>
