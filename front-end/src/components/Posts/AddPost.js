@@ -9,8 +9,7 @@ import { addPost } from '../../actions/postActions'
 
 const styles = {
     paper: {
-        padding: 8,
-        marginBottom: 10
+        padding: 20
     },
     textField: {
         width: '100%'
@@ -63,12 +62,15 @@ class AddPost extends Component {
         return (
             <Paper className={ classes.paper }>
                 <TextField 
+                    required
                     multiline
                     rowMax="4"
                     label="Please enter your title."
                     className={ classes.textField }
                     onChange={ this.handleChangeTitle }
                     value={ this.state.title }
+                    helperText={errors.required ? errors.password : ''}
+                    error={errors.required ? true : false}
                 />
                 <TextField 
                     multiline

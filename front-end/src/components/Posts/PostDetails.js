@@ -10,7 +10,6 @@ const styles = {
     paper: {
         padding: 10,
         display: 'flex',
-        margin: '1.5%',
         width: 500,
         minHeight: 20
     },
@@ -75,8 +74,11 @@ class PostDetails extends Component {
                     <div className={classes.postHeader}>
                         <span className={classes.time}>{(new Date(post.createdAt)).toDateString()}</span>
                     </div>
-                    {post.title}
-                    {post.text}
+                    <div>
+                        <h2>{post.title}</h2>
+                        <h3>Description</h3>
+                        {post.text}
+                    </div>
                 </div>
             </Paper>
 
